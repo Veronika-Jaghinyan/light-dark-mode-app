@@ -1,0 +1,133 @@
+@import '../styles/theme-variables.scss';
+
+/*Header styles*/
+.header {
+  width: 100%;
+  padding: 30px;
+  z-index: 99;
+  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.05);
+  @include themify($themes) {
+    background: themed('headerFooterBackground');
+  }
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    .logo-section {
+      height: 50px;
+      text-decoration: none;
+      display: flex;
+      width: 430px;
+      @include themify($themes) {
+        color: themed('textColor');
+      }
+      font-weight: 600;
+      text-transform: uppercase;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+      span {
+        display: inline-block;
+        font-size: 30px;
+        margin: auto;
+      }
+    }
+    .toggle-btn-section {
+      margin: auto 0 auto auto;
+      .toggle-checkbox {
+        justify-content: center;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+
+        .toggle-btn__input {
+          height: 0;
+          width: 0;
+          visibility: hidden;
+        }
+
+        .toggle-btn__input-label {
+          cursor: pointer;
+          text-indent: -9999px;
+          width: 46px;
+          height: 20px;
+          display: block;
+          border-radius: 23px;
+          position: relative;
+          border: none;
+          margin-top: 2px;
+
+          @include themify($themes) {
+            background-color: themed('toggleBackground');
+          }
+
+          &::after {
+            content: '?';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            transition: 0.3s;
+            box-shadow: 0 5px 10px rgba(153, 153, 153, 0.4);
+            background-color: #fff;
+          }
+        }
+
+        .toggle-btn__input:checked ~ .toggle-btn__input-label {
+          &:after {
+            background: #fff;
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+          }
+        }
+
+        .toggle-btn__input:checked ~ .toggle-btn__theme {
+          &:after {
+            // theme switch circle background in light theme
+            background: #fff;
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+          }
+        }
+      }
+
+      .toggle-btn__input:checked ~ .toggle-btn__input-label {
+        background-color: #82deff;
+      }
+    }
+  }
+}
+
+/*Layout wrapper styles*/
+
+.layout-wrapper {
+  @include themify($themes) {
+    background: themed('bodyBackgroundColor');
+  }
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 78px);
+}
+
+/*Footer styles*/
+.footer {
+  width: 100%;
+  z-index: 99;
+  height: 78px;
+  display: flex;
+  @include themify($themes) {
+    background: themed('headerFooterBackground');
+    color: themed('textColor');
+  }
+  .footer-content {
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+  }
+}
