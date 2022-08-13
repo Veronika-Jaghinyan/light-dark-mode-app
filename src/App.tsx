@@ -7,7 +7,16 @@ import sun from './images/sun.png';
 import './App.scss';
 
 const App: FC = () => {
-  const [theme, setTheme] = useState('light');
+  // Detecting the default theme
+  const isBrowserDefaulDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  const getDefaultTheme = (): string => {
+    const localStorageTheme = localStorage.getItem('default-theme');
+    const browserDefault = isBrowserDefaulDark() ? 'dark' : 'light';
+    return localStorageTheme || browserDefault;
+  };
+
+  const [theme, setTheme] = useState(getDefaultTheme());
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

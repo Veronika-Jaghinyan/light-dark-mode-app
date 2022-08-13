@@ -10,6 +10,8 @@ const Header: FC = () => {
   const handleThemeChange = () => {
     const isCurrentDark = theme === 'dark';
     setTheme(isCurrentDark ? 'light' : 'dark');
+    console.log('isCurrentDark', isCurrentDark)
+    localStorage.setItem('default-theme', isCurrentDark ? 'light' : 'dark');
   };
 
   return (
